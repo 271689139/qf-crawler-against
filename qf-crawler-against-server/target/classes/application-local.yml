@@ -1,0 +1,70 @@
+spring:
+  datasource:
+    druid:
+      url: "jdbc:mysql://10.249.82.178:3306/qf_crawler_against?useSSL=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true"
+      username: qf_collect
+      password: GpxkGFDnK91eUa+pHhOHRY5ZDylT2N6HkTgWdREwkF4GPNIGgB7tRKpzv3TDcChV0CAI0BSxZLPs1CqAbtYNhQ==
+      connectionProperties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAI9gORPrIVWH0G498rlyComZlH/Fqcf6oXGPOqYxnK94xltH8qLDuGmyhwDFuHwvz0k++KLnMdykHEkD5bPe++kCAwEAAQ==
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 10
+      minIdle: 2
+      maxActive: 100
+      maxWait: 5000
+      filters: config
+  kafka:
+    client-id: crawleragainst-local
+    bootstrap-servers: 10.248.81.153:9092
+    # 消费者
+    consumer:
+      group-id: crawleragainst-local
+      max-poll-records: 10
+    listener:
+      concurrency: 5
+core:
+  redis:
+    ## 节点 ip:port 多个节点用,分隔
+    ## 系统自动判断集群类型,规则：当sentinel.master不为空sentinel,nodes为多个cluster,单个single
+    nodes: 10.249.81.62:6383
+    password: Qiaofang123
+    ## 数据库index，系统默认为0
+    database: 0
+    ## 超时时间单位毫秒 系统默认2000毫秒
+    timeout: 2000
+    prefix:
+
+crawler-against:
+  #请求日志
+  http-request-kafka-topic: gateway-log
+  #动作通知
+  action-notify-kafka-topic: crawler-against
+
+alert:
+  server-url: http://log.qiaofangyun.com/
+  robot-access-token: 18c6e7a804ab66b3e8469ac703b5c4c62e6d2748f23d919b20a51873f752aa0e
+
+lts:
+  tasktracker:
+    node-group: CrawlerAgainstTaskTracker
+
+logging:
+  level:
+    com.qiaofang.jiagou.crawler.against.mapper: debug
+
+innersso:
+  # 【必选】当前服务的地址 用于单点登出，地址一定要在阿里云机房能访问到（内网ip也可以，因为阿里云机房跟上海机房有VPN）
+  application-server-url: http://localhost:8080/
+  # 【必选】innersso服务地址
+  server-url-prefix: https://passport.qiaofangyun.com/
+  #【前后端分离项目需要配置】未登录拦截后调整策略，固定以下值
+  authentication-redirect-strategy-class: com.qiaofang.jiagou.innersso.authentication.FacesCompatibleAuthenticationRedirectStrategy
+  #【非必选】需要进行登录状态验证的url匹配规则（规则写法与）不配置则所有的url都会进行验证
+  authentication-url-patterns: /api/*
+  # 忽略验证的url
+  authentication-ignore-urls: /api/matchRecord/relieveForbidden,/api/rule/refresh
+  #获取用户权限url
+  right-server-url-prefix: https://authmanage.dev.qiaofangyun.com
+  right-app-name: crawleragainst
+
+operatelog:
+  system: crawleragainst
+  kafka-server: 10.249.81.153:9092

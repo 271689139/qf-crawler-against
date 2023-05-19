@@ -1,0 +1,40 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.qiaofang.jiagou.crawler.against.config.AlertConfiguration",
+      "name": "alert",
+      "type": "com.qiaofang.jiagou.crawler.against.config.AlertConfiguration"
+    },
+    {
+      "sourceType": "com.qiaofang.jiagou.crawler.against.config.CrawlerAgainstProperties",
+      "name": "crawler-against",
+      "type": "com.qiaofang.jiagou.crawler.against.config.CrawlerAgainstProperties"
+    },
+    {
+      "sourceType": "com.qiaofang.jiagou.crawler.against.config.DruidDataSourceConfig",
+      "name": "spring.datasource.druid",
+      "sourceMethod": "baseDruidDataSource()",
+      "type": "javax.sql.DataSource"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.qiaofang.jiagou.crawler.against.config.AlertConfiguration",
+      "name": "alert.robot-access-token",
+      "description": "报警机器人AccessToken",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.qiaofang.jiagou.crawler.against.config.AlertConfiguration",
+      "name": "alert.server-url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.qiaofang.jiagou.crawler.against.config.CrawlerAgainstProperties",
+      "name": "crawler-against.action-notify-kafka-topic",
+      "description": "动作通知",
+      "type": "java.lang.String"
+    }
+  ]
+}

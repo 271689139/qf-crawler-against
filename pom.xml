@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-parent</artifactId>
+        <version>Edgware.SR6</version>
+    </parent>
+    <groupId>com.qiaofang.jiagou</groupId>
+    <artifactId>qf-crawler-against</artifactId>
+
+    <properties>
+        <docker.registry></docker.registry>
+        <docker.saas2flag></docker.saas2flag>
+        <push.flag></push.flag>
+        <docker.tag>1.0.0-snapshot</docker.tag>
+        <java.version>1.8</java.version>
+        <com.spotify.docker.maven.plugin.version>0.4.13</com.spotify.docker.maven.plugin.version>
+    </properties>
+    <name>qf-crawler-against</name>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <!--部署jar文件到仓库 -->
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Qiaofang Releases</name>
+            <url>http://maven.qiaofangyun.com/nexus/content/repositories/CoreReleases/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Qiaofang Snapshots</name>
+            <url>http://maven.qiaofangyun.com/nexus/content/repositories/CoreSnapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <modules>
+        <module>qf-crawler-against-server</module>
+        <module>qf-crawler-against-stub</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${com.spotify.docker.maven.plugin.version}</version>
+                    <configuration>
+                        <skipDockerBuild>true</skipDockerBuild>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>

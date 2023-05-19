@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: crawleragainst
+  cloud:
+    config:
+      enabled: true
+      uri: ${config_uri:http://jediconfig:9888}
+      profile: ${config_profile}
+      fail-fast: ${fail_fast:true}
+      label: ${git_branch:master}
+  profiles:
+    active: ${config_profile}
+
+log:
+  kafka:
+    server: ${log_kafka_server:192.168.1.153:9092}
