@@ -80,5 +80,5 @@
 [动态控制配置规则示例](image/WechatIMG354.png)
 
 ### 验证码解封流程
-[v10解封流程图] (image/WechatIMG356.jpeg)
+[v10解封流程图](image/WechatIMG356.jpeg)
 
